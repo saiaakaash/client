@@ -1,10 +1,10 @@
 import React, {useState, useEffect} from 'react'
 import M from 'materialize-css';
-import {useHistory} from "react-router-dom"
+import {useNavigate} from "react-router-dom"
 
 
 const CreatePost = () =>{
-    const history = useHistory();
+    const navigate = useNavigate();
     const [title, setTitle] = useState("")
     const [body, setBody] = useState("")
     const [image, setImage] = useState("")
@@ -16,7 +16,7 @@ const CreatePost = () =>{
             method:"post",
             headers: {
              "Content-Type":"application/json",
-             "Authorization": "Bearer "+localstorage.getItem("jwt")
+             "Authorization": "Bearer "+localStorage.getItem("jwt")
             },
             body: JSON.stringify({
                 title,
@@ -31,7 +31,7 @@ const CreatePost = () =>{
             }
             else{
                 M.toast({html: "created post successfully", classes:"#43a047 green darken-1"})
-                history.push('/')
+                navigate('/')
             }
             
         }).catch(err=>{

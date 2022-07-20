@@ -1,9 +1,9 @@
 import React, {useState} from "react"
-import {Link, useHistory} from "react-router-dom"
+import {Link, useNavigate} from "react-router-dom"
 import M from 'materialize-css';
 
 const Signin = ()=>{
-  const history = useHistory();
+  const navigate = useNavigate();
   const [password, setPassword] = useState("")
   const [email, setEmail] = useState("") 
   const PostData = ()=>{
@@ -30,7 +30,7 @@ const Signin = ()=>{
               localStorage.setItem("jwt", data.token)
               localStorage.setItem("user", JSON.stringify(data.user))
               M.toast({html: "Signed in Successfully", classes:"#43a047 green darken-1"})
-              history.push('/')
+              navigate('/')
           }
           
       }).catch(err=>{
